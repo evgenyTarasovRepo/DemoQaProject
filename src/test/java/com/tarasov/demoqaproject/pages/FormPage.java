@@ -2,11 +2,11 @@ package com.tarasov.demoqaproject.pages;
 
 import org.openqa.selenium.Keys;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.sleep;
-import static org.openqa.selenium.By.tagName;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class FormPage {
 
@@ -29,6 +29,9 @@ public class FormPage {
     }
 
     public void formValidation() {
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(userEmail);

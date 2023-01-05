@@ -20,6 +20,7 @@ public class LaunchPage {
 
     @BeforeEach
     public void setUp() {
+
         open(BASE_URL);
     }
 
