@@ -1,62 +1,118 @@
 package com.tarasov.demoqaproject.pages;
 
+import com.codeborne.selenide.SelenideElement;
+import com.tarasov.demoqaproject.pages.components.CalendarComponent;
+import com.tarasov.demoqaproject.pages.components.ModalComponent;
 import org.openqa.selenium.Keys;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
+import static com.codeborne.selenide.Selenide.*;
 
 public class FormPage {
+    private CalendarComponent calendarComponent = new CalendarComponent();
+    private ModalComponent modalComponent = new ModalComponent();
+    private final SelenideElement firstNameInput = $("#firstName");
+    private final SelenideElement lastNameInput = $("#lastName");
+    private final SelenideElement userEmailInput = $("#userEmail");
+    private final SelenideElement userGender = $("#genterWrapper");
+    private final SelenideElement userNumber = $("#userNumber");
+    private final SelenideElement dateOfBirthInput = $("#dateOfBirthInput");
+    private final SelenideElement subjectsInput = $("#subjectsInput");
+    private final SelenideElement hobbyPicker = $("#hobbiesWrapper");
+    private final SelenideElement uploadPicture = $("#uploadPicture");
+    private final SelenideElement currentAddress = $("#currentAddress");
+    private final SelenideElement userState = $("#state");
+    private final SelenideElement userCity = $("#city");
+    private final SelenideElement submitBtn = $("#submit");
 
-    private final String firstName = "TestName";
-    private final String lastName = "TestLastName";
-    private final String userEmail = "testEmail@yahoo.com";
-    private final String sex = "Male";
-    private final String userNumber = "1999888776";
-    private final String birthDate = "14 January,1987";
-    private final String subj = "Math";
-    private final String file = "File.png";
-    private final String hobbies = "Music";
-    private final String address = "Alicante, Carrer Rafael Terrol, 11";
-    private final String state = "Haryana";
-    private final String city = "Panipat";
 
-    public FormPage checkPage() {
+    public FormPage openPage() {
+        open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         return this;
     }
 
+    public FormPage setFirstName(String firstName) {
+        firstNameInput.setValue(firstName);
+        return this;
+    }
+    public FormPage setLastName(String lastName) {
+        lastNameInput.setValue(lastName);
+        return this;
+    }
+    public FormPage setUserEmail(String userEmail) {
+        userEmailInput.setValue(userEmail);
+        return this;
+    }
+    public FormPage setUserGender(String value) {
+        userGender.$(byText(value)).click();
+        return this;
+    }
+    public FormPage setUserNumber(String number) {
+        userNumber.setValue(number);
+        return this;
+    }
+    public FormPage setDate(String month, String year, String day) {
+        dateOfBirthInput.click();
+        calendarComponent.setDate(month, year, day);
+        return this;
+    }
+    public FormPage setSubject(String subject) {
+        subjectsInput.setValue(subject).pressEnter();
+        return this;
+    }
+    public FormPage setHobby(String hobby) {
+        hobbyPicker.$(byText(hobby)).click();
+        return this;
+    }
+    public FormPage setPicture(String path) {
+        uploadPicture.uploadFromClasspath(path);
+        return this;
+    }
+    public FormPage setAddress(String address) {
+        currentAddress.setValue(address);
+        return this;
+    }
+    public FormPage setState(String state) {
+        userState.click();
+        userState.$(byText(state)).click();
+        return this;
+    }
+    public FormPage setCity(String city) {
+        userCity.click();
+        userCity.$(byText(city)).click();
+        return this;
+    }
+    public FormPage pressSubmitBtn() {
+        submitBtn.click();
+        return this;
+    }
+    public FormPage verifyModal() {
+        modalComponent.verifyModal();
+        return this;
+    }
+
+    public FormPage verifyModalResults(String key, String value) {
+        modalComponent.verifyModalResults(key, value);
+        return this;
+    }
+
+    public FormPage closeModal() {
+        modalComponent.closeModal();
+        return this;
+    }
+
+
+
+
     public void formValidation() {
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
-
-        $("#firstName").setValue(firstName);
-        $("#lastName").setValue(lastName);
-        $("#userEmail").setValue(userEmail);
-        $(byText(sex)).click();
-        $("#userNumber").setValue(userNumber);
-        $("#dateOfBirthInput")
-                .setValue(Keys.chord(Keys.CONTROL + "a" + " "))
-                .setValue(birthDate)
-                .pressEscape();
-        $("#subjectsInput").setValue(subj).pressEnter();
-        $("#hobbiesWrapper").$(byText(hobbies)).click();
-        $("#uploadPicture").uploadFromClasspath("images/File.png");
-        $("#currentAddress").setValue(address);
-        $("#state").click();
-        $("#state").$(byText(state)).click();
-        $("#city").click();
-        $("#city").$(byText(city)).click();
-        $("#submit").click();
-        $(".modal-content").should(appear);
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-
-        $(".modal-body").shouldHave(text(firstName + " " + lastName),
-                text(userEmail), text(sex), text(userNumber),
-                text(birthDate), text(subj), text(hobbies),
-                text(file), text(address), text(state + " " + city));
 
         $("#closeLargeModal").click();
     }
