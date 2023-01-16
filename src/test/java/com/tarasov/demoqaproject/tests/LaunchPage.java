@@ -28,11 +28,6 @@ public class LaunchPage extends TestBase {
         String state = "Haryana";
         String city = "Panipat";
 
-//        Map<String, String> data = Map.of(
-//                firstName, lastName, userEmail, gender, userNumber,
-//                month, subject, hobby, filePath, address,
-//                state, city
-//        );
 
         formPage
                 .openPage()
