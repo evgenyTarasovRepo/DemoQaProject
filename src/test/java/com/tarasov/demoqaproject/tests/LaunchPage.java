@@ -1,11 +1,13 @@
 package com.tarasov.demoqaproject.tests;
 
+import com.tarasov.demoqaproject.testdata.TestData;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class LaunchPage extends TestBase {
+    TestData testData = new TestData();
 
     @AfterEach
     public void turnDown() {
@@ -14,48 +16,33 @@ public class LaunchPage extends TestBase {
 
     @Test
     public void checkForm() {
-        String firstName = "TestName";
-        String lastName = "TestLastName";
-        String userEmail = "testEmail@yahoo.com";
-        String gender = "Male";
-        String userNumber = "1999888776";
-        String birthDate = "14 January,1987";
-        String subject = "Math";
-        String hobby = "Sports";
-        String filePath = "images/File.png";
-        String fileName = "File.png";
-        String address = "Alicante, Carrer Rafael Terrol, 11";
-        String state = "Haryana";
-        String city = "Panipat";
-
-
         formPage
                 .openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setUserEmail(userEmail)
-                .setUserGender(gender)
-                .setUserNumber(userNumber)
-                .setDate("January", "1987", "14")
-                .setSubject(subject)
-                .setHobby(hobby)
-                .setPicture(filePath)
-                .setAddress(address)
-                .setState(state)
-                .setCity(city)
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setUserEmail(testData.userEmail)
+                .setUserGender(testData.userGender)
+                .setUserNumber(testData.userCellNumber)
+                .setDate(testData.dayMonthYear[1], testData.dayMonthYear[2], testData.dayMonthYear[0])
+                .setSubject(testData.subject)
+                .setHobby(testData.hobby)
+                .setPicture(testData.filePath)
+                .setAddress(testData.address)
+                .setState(testData.state)
+                .setCity(testData.city)
                 .pressSubmitBtn()
                 .verifyModal();
 
-        formPage.verifyModalResults("Student Name", firstName + " " + lastName)
-                .verifyModalResults("Student Email", userEmail)
-                .verifyModalResults("Gender", gender)
-                .verifyModalResults("Mobile", userNumber)
-                .verifyModalResults("Date of Birth", birthDate)
-                .verifyModalResults("Subjects", subject)
-                .verifyModalResults("Hobbies", hobby)
-                .verifyModalResults("Picture", fileName)
-                .verifyModalResults("Address", address)
-                .verifyModalResults("State and City", state + " " + city)
+        formPage.verifyModalResults("Student Name", testData.firstName + " " + testData.lastName)
+                .verifyModalResults("Student Email", testData.userEmail)
+                .verifyModalResults("Gender", testData.userGender)
+                .verifyModalResults("Mobile", testData.userCellNumber)
+                .verifyModalResults("Date of Birth", testData.dateOfBirth)
+                .verifyModalResults("Subjects", testData.subject)
+                .verifyModalResults("Hobbies", testData.hobby)
+                .verifyModalResults("Picture", testData.fileName)
+                .verifyModalResults("Address", testData.address)
+                .verifyModalResults("State and City", testData.state + " " + testData.city)
                 .closeModal();
     }
 }
