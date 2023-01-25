@@ -13,6 +13,6 @@ public abstract class TestBase {
         Configuration.browser = "chrome";
         Configuration.browserSize = "1980x1020";
         Configuration.headless = false;
-        Configuration.holdBrowserOpen = true;
+        Configuration.holdBrowserOpen = false;
     }
 }

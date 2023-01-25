@@ -14,28 +14,21 @@ public class TestData {
     public String firstName = faker.name().firstName();
     public String lastName = faker.name().lastName();
     public String userEmail = faker.internet().emailAddress();
-
     public String userGender = getRandomValue("Male", "Female", "Other");
-
     public String[] dayMonthYear = getRandomDate();
     public String dateOfBirth = String.format("%s %s,%s", dayMonthYear[0], dayMonthYear[1], dayMonthYear[2]);
     public String userCellNumber = String.valueOf(faker.number().numberBetween(9151111111L, 9269999999L));
     public String hobby = getRandomValue("Sports", "Reading", "Music");
-    public String subject = getRandomValue("Math", "Chemistry", "Physics", "Computer Science");
+    public String subject = getRandomValue("Math", "Chemistry", "Physics", "Computer Science", "English", "History");
     public String filePath = "images/File.png";
     public String fileName = "File.png";
-
     public String address = faker.address().fullAddress();
-
     public String state = getRandomValue("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
     public String city = getCity();
 
 
     private String getRandomValue(String... initialValues) {
-        List<String> valueList = new ArrayList<>();
-        Collections.addAll(valueList, initialValues);
-
-        return valueList.get(faker.random().nextInt(0, valueList.size() - 1));
+        return faker.options().option(initialValues);
     }
 
     private String[] getRandomDate() {
