@@ -1,8 +1,6 @@
 package com.tarasov.demoqaproject.pages.components;
 
 import com.codeborne.selenide.SelenideElement;
-import com.tarasov.demoqaproject.pages.FormPage;
-import org.w3c.dom.html.HTMLInputElement;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
