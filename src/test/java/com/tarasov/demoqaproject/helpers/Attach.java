@@ -1,8 +1,6 @@
 package com.tarasov.demoqaproject.helpers;
 
-import com.codeborne.selenide.Browser;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.commands.TakeScreenshot;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;

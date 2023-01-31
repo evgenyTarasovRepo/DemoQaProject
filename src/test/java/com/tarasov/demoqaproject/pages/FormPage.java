@@ -4,15 +4,11 @@ import com.codeborne.selenide.SelenideElement;
 import com.tarasov.demoqaproject.pages.components.CalendarComponent;
 import com.tarasov.demoqaproject.pages.components.ModalComponent;
 import io.qameta.allure.Step;
-import org.openqa.selenium.Keys;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+
 
 public class FormPage {
     private CalendarComponent calendarComponent = new CalendarComponent();
