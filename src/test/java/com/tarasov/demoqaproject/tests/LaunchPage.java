@@ -1,7 +1,14 @@
 package com.tarasov.demoqaproject.tests;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.tarasov.demoqaproject.testdata.TestData;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
@@ -9,13 +16,14 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 public class LaunchPage extends TestBase {
     TestData testData = new TestData();
 
-    @AfterEach
-    public void turnDown() {
-        closeWebDriver();
-    }
-
     @Test
+    @Tag("JenkinsTest")
+    @Feature("Check modal")
+    @Story("Fill form and verify results")
+    @Owner("eatarasov")
+    @DisplayName("Check form test")
     public void checkForm() {
+
         formPage
                 .openPage()
                 .setFirstName(testData.firstName)
@@ -42,7 +50,7 @@ public class LaunchPage extends TestBase {
                 .verifyModalResults("Hobbies", testData.hobby)
                 .verifyModalResults("Picture", testData.fileName)
                 .verifyModalResults("Address", testData.address)
-                .verifyModalResults("State and City", testData.state + " " + testData.city)
-                .closeModal();
+                .verifyModalResults("State and City", testData.state + " " + testData.city);
+//                .closeModal();
     }
 }
