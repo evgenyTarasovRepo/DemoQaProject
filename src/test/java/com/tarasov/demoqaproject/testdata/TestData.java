@@ -17,8 +17,8 @@ public class TestData {
     public String userCellNumber = String.valueOf(faker.number().numberBetween(9151111111L, 9269999999L));
     public String hobby = getRandomValue("Sports", "Reading", "Music");
     public String subject = getRandomValue("Math", "Chemistry", "Physics", "Computer Science", "English", "History");
-    public String filePath = "File.png";
-    public String fileName = "File.png";
+    public String filePath = "images/File.png";
+    public String fileName = "images/File.png";
     public String address = faker.address().fullAddress();
     public String state = getRandomValue("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
     public String city = getCity();
