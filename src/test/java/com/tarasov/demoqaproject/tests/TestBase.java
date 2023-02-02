@@ -38,7 +38,7 @@ public abstract class TestBase {
     public void tearDown() {
         Attach.screenShotAs("Last screenshot");
         Attach.pageSource();
-        Attach.browserConsoleLogs();
+//        Attach.browserConsoleLogs();
         Attach.addVideo();
     }
 }
