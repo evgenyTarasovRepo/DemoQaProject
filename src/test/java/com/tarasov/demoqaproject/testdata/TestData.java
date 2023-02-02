@@ -18,7 +18,7 @@ public class TestData {
     public String hobby = getRandomValue("Sports", "Reading", "Music");
     public String subject = getRandomValue("Math", "Chemistry", "Physics", "Computer Science", "English", "History");
     public String filePath = "images/File.png";
-    public String fileName = "images/File.png";
+    public String fileName = "File.png";
     public String address = faker.address().fullAddress();
     public String state = getRandomValue("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
     public String city = getCity();
